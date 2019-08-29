@@ -1,0 +1,94 @@
+﻿@model PagedList.IPagedList<UtilantDemo.ViewModels.AlbumViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    bool bHasError = false;
+    if ( ViewBag.HasError)
+    {
+        bHasError = true;
+    }
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Common.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        @if (!bHasError)
+        {
+            using (Html.BeginForm())
+            {
+                <div class="search-item">
+                    Find by Title / Name: @Html.TextBox("searchText", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    <input type="submit" value="Search" class="btn btn-primary btn-search"/>
+                </div>
+            }
+            
+            <div class="home-content white-background">
+
+                <table class="table table-striped table-title">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Thumbnail</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="thumbnail-column"><img src="@Html.DisplayFor(m => item.ThumbnailUrl)" width="100" height="100"> </td>
+                            <td class="title-column"><a class="disable-underline" href="@Url.Action("Details", "Thumbnail", new { titleId = item.Id })">@Html.DisplayFor(m => item.Title)</a></td>
+                            <td class="name-column"><a class="disable-underline" href="@Url.Action("Details", "User", new { userId = item.UserId })">@Html.DisplayFor(m => item.Name)</a></td>
+                            <td class="email-column">@Html.DisplayFor(m => item.Email)</td>
+                            <td class="phone-column">@Html.DisplayFor(m => item.Phone)</td>
+                            <td class="address-column">
+                                <table id="table-address">
+                                    <tr>
+                                        <td>Street</td>
+                                        <td>@Html.DisplayFor(m => item.Address.Street)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Suite</td>
+                                        <td>@Html.DisplayFor(m => item.Address.Suite)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>@Html.DisplayFor(m => item.Address.City)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ZIP Code</td>
+                                        <td>@Html.DisplayFor(m => item.Address.ZipCode)</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+                <br />
+                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+                @Html.PagedListPager(Model, page => Url.Action("Home",
+                         new { page, currentFilter = ViewBag.CurrentFilter }))
+            </div>
+        }
+        else
+        {
+            <div class="error">Error Occured. Please see log file for more details.</div>
+        }
+    </div>
+</body>
+</html>

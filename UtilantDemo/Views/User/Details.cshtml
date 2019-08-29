@@ -1,0 +1,131 @@
+﻿@model UtilantDemo.ViewModels.UserViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    bool bHasError = false;
+    if (ViewBag.HasError)
+    {
+        bHasError = true;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Common.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <div class="button-back">
+            @Html.ActionLink("Back to Home", "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <br />
+        @if (!bHasError)
+        {
+            <h3 class="header">@Html.DisplayFor(m => Model.Name)'s Personal Details</h3>
+            <div id="personal-details" class="white-background">
+                <table class="table">
+                    <tr>
+                        <td class="personal-details-header"><b>Name</b></td>
+                        <td>@Html.DisplayFor(m => Model.Name)</td>
+                    </tr>
+                    <tr>
+                        <td><b>User Name</b></td>
+                        <td>@Html.DisplayFor(m => Model.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Email</b></td>
+                        <td>@Html.DisplayFor(m => Model.Email)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Address</b></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><b>Street</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Address.Street)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Suite</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Address.Suite)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>City</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Address.City)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>ZIP Code</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Address.ZipCode)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Latitude</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Address.Geo.Lat)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Longitude</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Address.Geo.Lng)</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><b>Phone</b></td>
+                        <td>@Html.DisplayFor(m => Model.Phone)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Website</b></td>
+                        <td>@Html.DisplayFor(m => Model.Website)</td>
+                    </tr>
+                    <tr>
+                        <td><b>Company</b></td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <td><b>Name</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Company.Name)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Catch Phrase</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Company.CatchPhrase)</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Bs</b></td>
+                                    <td>@Html.DisplayFor(m => Model.Company.Bs)</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <h3 class="header">@Html.DisplayFor(m => Model.Name)'s Posts</h3>
+            <div id="post-details" class="white-background">
+                <table class="table table-striped">
+                    @foreach (var post in Model.Post)
+                    {
+                        <tr>
+                            <td class="post-details-header">
+                                @Html.DisplayFor(m => post.Title)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(m => post.Body)
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="error">Error Occured. Please see log file for more details.</div>
+        }
+    </div>
+</body>
+</html>

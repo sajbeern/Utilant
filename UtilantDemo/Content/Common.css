@@ -1,0 +1,146 @@
+﻿.page-body {
+    background: #90e4ff;
+    background: -webkit-linear-gradient(to right, #fff, #90e4ff);
+    background: linear-gradient(to right, #99c3e6, #004386);
+    /*fff 0763bf*/
+}
+
+.home-content {
+    color: #1c517d;
+    padding: 10px;
+    box-shadow: 15px 15px 30px #3a3a3a;
+}
+
+.btn-search {
+    box-shadow: 4px 4px 10px #3a3a3a;
+}
+
+#table-title {
+    width: 100%;
+}
+
+.thumbnail-column {
+    width: 10%;
+}
+
+.title-column {
+    width: 30%;
+}
+
+.name-column {
+    width: 15%;
+}
+
+.email-column {
+    width: 15%;
+}
+
+.phone-column {
+    width: 12%;
+}
+
+.address-column {
+    width: 35%;
+}
+
+#personal-details {
+    color: #1c517d;
+    padding: 50px 250px 10px 100px;
+    width: 100%;
+    margin: 10px 0 30px 0px;
+    box-shadow: 15px 15px 30px #3a3a3a;
+
+}
+
+.personal-details-header {
+    width: 20%;
+}
+
+#post-details {
+    color: #1c517d;
+    padding: 30px;
+    width: 100%;
+    margin: 10px 0 0 0px;
+    box-shadow: 15px 15px 30px #3a3a3a;
+}
+
+.post-details-header {
+    width: 35%;
+}
+
+.button-back {
+    display:inline-block;
+    color:#444;
+    border:1px solid #CCC;
+    background:#DDD;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.2);
+    cursor:pointer;
+    vertical-align:middle;
+    max-width: 200px;
+    padding: 5px;
+    text-align: center;
+}
+.button-back:active {
+    color:red;
+    box-shadow: 0 0 5px -1px rgba(0,0,0,0.6);
+}
+
+.button-back a {
+    font-size: 14px;
+    font-weight: bold;
+}
+#table-address td{
+    font-size:0.8em;
+}
+
+.disable-underline {
+    text-decoration:none !important;
+}
+
+#thumnails{
+    width:100%;
+    height:900px;
+    box-shadow: 15px 15px 30px #3a3a3a;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.tile {
+    color: #1c517d;
+    font-family: Trebuchet MS;
+    width: 152px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 60px;
+    /*border: 1px solid #ccc;*/
+}
+
+.tile:hover {
+    /*border: 1px solid #e8e2e2;*/
+}
+
+.white-background {
+    background:#fff;
+}
+
+.search-item {
+    font-family: Calibri;
+    font-weight: bold;
+    margin: 10px 0 20px 0;
+}
+
+.search-item input{
+    display: inline;
+}
+
+.header {
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.error {
+    height: 700px;
+    padding: 50px;
+    color: red;
+    font-size: x-large;
+}

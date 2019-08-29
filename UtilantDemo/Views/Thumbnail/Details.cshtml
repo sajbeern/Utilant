@@ -1,0 +1,48 @@
+﻿@model UtilantDemo.ViewModels.PhotoViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    bool bHasError = false;
+    if (ViewBag.HasError)
+    {
+        bHasError = true;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+    <link href="~/Content/Common.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="button-back">
+        @Html.ActionLink("Back to Home", "Home", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    </div>
+    <br />
+
+    @if (!bHasError)
+    {
+        <h3 class="header">Thumbnails of @Html.DisplayFor(m => Model.Title)</h3>
+        <div id="thumnails" class="white-background">
+
+            @foreach (var item in Model.Photo)
+            {
+                <div class="tile">
+                    <a target="_blank" href="@Html.DisplayFor(m => item.ThumbnailUrl)">
+                        <img src="@Html.DisplayFor(m => item.ThumbnailUrl)">
+                    </a>
+                    <div>@Html.DisplayFor(m => item.Title)</div>
+                </div>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="error">Error Occured. Please see log file for more details.</div>
+    }
+</body>
+</html>
